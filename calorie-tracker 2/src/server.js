@@ -1,0 +1,44 @@
+const app = require("./app");
+const db  = require("./models/db");
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("\n╔══════════════════════════════════════════════╗");
+  console.log("║        🥗  CalorieTracker API                ║");
+  console.log("╚══════════════════════════════════════════════╝");
+  console.log(`\n  Server  →  http://localhost:${PORT}`);
+  console.log(`  Foods   →  ${Object.keys(db.foodDB).length} items seeded`);
+  console.log(`  Mode    →  ${process.env.NODE_ENV || "development"}\n`);
+  console.log("─── PUBLIC ───────────────────────────────────────");
+  console.log("  GET  /health");
+  console.log("  GET  /foods?q=&category=");
+  console.log("  GET  /foods/categories");
+  console.log("  GET  /foods/:id");
+  console.log("  GET  /progress/calculator/bmr\n");
+  console.log("─── AUTH ─────────────────────────────────────────");
+  console.log("  POST /auth/register        (16+ required)");
+  console.log("  POST /auth/login           → returns token");
+  console.log("  POST /auth/logout\n");
+  console.log("─── PROTECTED (Bearer token required) ────────────");
+  console.log("  GET    /users/me");
+  console.log("  PATCH  /users/me");
+  console.log("  PATCH  /users/me/password");
+  console.log("  DELETE /users/me\n");
+  console.log("  GET    /goals");
+  console.log("  PATCH  /goals\n");
+  console.log("  GET    /diary              (today)");
+  console.log("  GET    /diary/:date");
+  console.log("  POST   /diary/:date/entries");
+  console.log("  PATCH  /diary/:date/entries/:id");
+  console.log("  DELETE /diary/:date/entries/:id\n");
+  console.log("  POST   /water              (today)");
+  console.log("  POST   /water/:date");
+  console.log("  GET    /water              (today)");
+  console.log("  GET    /water/:date\n");
+  console.log("  POST   /weight");
+  console.log("  GET    /weight\n");
+  console.log("  GET    /progress?from=&to=");
+  console.log("  GET    /progress/streak\n");
+  console.log("──────────────────────────────────────────────────\n");
+});

@@ -1,0 +1,22 @@
+{
+  "name": "calorie-tracker-api",
+  "version": "1.0.0",
+  "description": "MyFitnessPal-style calorie tracking REST API",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.2",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "license": "ISC"
+}

@@ -1,0 +1,10 @@
+const { Router } = require("express");
+const { logWaterToday, logWaterByDate, getWaterToday, getWaterByDate } = require("../controllers/waterController");
+const { authenticate } = require("../middleware/auth");
+const router = Router();
+router.use(authenticate);
+router.post("/",      logWaterToday);
+router.post("/:date", logWaterByDate);
+router.get("/",       getWaterToday);
+router.get("/:date",  getWaterByDate);
+module.exports = router;

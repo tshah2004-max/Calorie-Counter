@@ -1,0 +1,10 @@
+const { Router } = require("express");
+const { getMe, updateMe, changePassword, deleteMe } = require("../controllers/userController");
+const { authenticate } = require("../middleware/auth");
+const router = Router();
+router.use(authenticate);
+router.get("/me",            getMe);
+router.patch("/me",          updateMe);
+router.patch("/me/password", changePassword);
+router.delete("/me",         deleteMe);
+module.exports = router;

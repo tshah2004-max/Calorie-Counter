@@ -1,0 +1,11 @@
+const { Router } = require("express");
+const { getDiaryToday, getDiaryByDate, addEntry, updateEntry, deleteEntry } = require("../controllers/diaryController");
+const { authenticate } = require("../middleware/auth");
+const router = Router();
+router.use(authenticate);
+router.get("/",                          getDiaryToday);
+router.get("/:date",                     getDiaryByDate);
+router.post("/:date/entries",            addEntry);
+router.patch("/:date/entries/:entryId",  updateEntry);
+router.delete("/:date/entries/:entryId", deleteEntry);
+module.exports = router;
