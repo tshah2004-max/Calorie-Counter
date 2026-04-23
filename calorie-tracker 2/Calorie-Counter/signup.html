@@ -46,8 +46,56 @@
         <p class="auth-footer">
           Already have an account? <a href="login.html">Login</a>
         </p>
-
-        <!-- Add JS authentication here-->
+        <script>
+          const API ="[localhost](http://localhost:3000)";
+          const signupForm = document.getElementByID("signupForm");
+          if (signupForm) {
+            signupForm.addEventListener("submit", async (e) => {
+              e.prevetntDefault();
+              const errorEl = document.gerElementByID("error-message");
+              errorEl.style.display = "none";
+              const name = document.gerElemenByID("name").value.trim();
+              const email = document.gerElemenByID("email").value.trim();
+              const passoword = document.gerElemenByID("password").value.trim();
+              if (!name) {
+                errorEl.textContent = "Please enter your full name.";
+                errorEl.style.Display = "block";
+                return;
+              }
+              const emailPattern = /^[^\s@]+@^\s@]+\.[^\s@]+$/;
+              if (!emailPattern.test(email)) {
+                errorEl.textContent = "Please enter a valid email address.";
+                errorEl.style.Display = "block";
+                return;
+              }
+              if (password.length < 6) {
+                errorEl.textContent = "Password must be at least 6 characters long.";
+                errorEl.style.Display = "block";
+                return;
+              }
+              try {
+                const res = await fetch('${API}/auth/registrer', {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body:JSON.stringify({ displayName: name, email, password }),
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                  errorEl.textContent = data.error || "Registraion failed.";
+                  errorEl.style.display = "block";
+                  return;
+                }
+                //auto login
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("userId", data.userid);
+                window.location.href = "setprofile.html";
+              } catch (err) {
+                errorEl.textContent = "Server error. Please try again.";
+                errorEl.style.display = "block";
+              }
+            });
+          }                               
+        </script>
       </div>
     </div>
   </div>
