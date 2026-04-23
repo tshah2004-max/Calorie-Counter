@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const db      = require("./models/db");
 
@@ -13,6 +14,7 @@ const { errorHandler, notFound } = require("./middleware/errorHandler");
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "../Calorie-Counter")));
 
 app.get("/health", (_req, res) => res.json({
   status: "ok", name: "CalorieTracker API", version: "1.0.0",
